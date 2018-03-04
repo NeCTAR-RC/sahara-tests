@@ -1,4 +1,4 @@
-<%page args="is_proxy_gateway='true', use_auto_security_group='true', ci_flavor_id='m1.small'"/>
+<%page args="is_proxy_gateway='true', use_auto_security_group='true', ci_flavor_id='m1.small', availability_zone='nova'"/>
 
 clusters:
   - plugin_name: spark
@@ -10,6 +10,7 @@ clusters:
         node_processes:
           - master
           - namenode
+        availability_zone: ${availability_zone}
         auto_security_group: ${use_auto_security_group}
         is_proxy_gateway: ${is_proxy_gateway}
       - name: worker
@@ -17,6 +18,7 @@ clusters:
         node_processes:
           - datanode
           - slave
+        availability_zone: ${availability_zone}
         auto_security_group: ${use_auto_security_group}
     cluster_template:
       name: spark210
